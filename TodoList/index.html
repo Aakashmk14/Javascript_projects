@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .tit{
+        background-color:darkorchid;
+        padding: 10px;
+        width: 100%;
+        color:black;
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+        }
+    .int{
+        text-align: center;
+        border-color: black;
+        width: 100%;
+        height: 40px;
+    }
+    input{
+        width: 50%;
+        height: 100%;
+    }
+    #but{
+        background-color:darkorchid;
+        color:black;
+        height:100%;
+        width: 10%;
+        border-radius: 10px;
+        border:black 2px;
+        padding: auto;
+    }   
+    #listcontainer{
+        padding: 30px;
+        margin:20px;
+        font-size: 25px; 
+        height: 5%;
+    }
+    li{
+        margin: 10px;
+        padding: 20px;
+        height: 30px;
+    }
+    .overlay{
+        background-color:black;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        opacity: 0.8;
+        z-index: 1;
+        display: none;
+    }
+    .popupbox{
+        position: absolute;
+        z-index: 2;
+        background-color: aliceblue;
+        color: black;
+        width: 40% ;
+        height: 30%;
+        padding: 20px;
+        border-radius: 20px;
+        left: 30%;
+        text-align:center;
+        font-size: 30px;
+        display: none;
+    }
+</style>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Todolist</title>
+</head>
+<body>
+<div class="tit">
+<h1>TO DO LIST</h1>
+</div>
+<div class="int">
+<input id="new" type="text">
+<button id="but" onclick="add(event)">ADD</button>
+</div>
+<div class= "overlay"></div>
+<div class="popupbox">
+    <p>New task is added</p>
+    <button onclick="closen()">close</button>
+</div>
+<ol id="listcontainer">
+	<li >Hello 
+	   <button id="but" onclick="deleteitem(event)">Delete </button> 
+	</li>
+</ol>
+<script>
+var ul=document.getElementById("listcontainer")
+var task=document.getElementById("new")
+var popupoverlay = document.querySelector(".overlay")
+var popupbox= document.querySelector(".popupbox")
+function add(){
+	var listitem=document.createElement("li")
+	listitem.innerHTML= `${task.value}
+	   <button id="but" onclick="deleteitem(event)">Delete </button>`
+	ul.append(listitem)
+    popupbox.style.display="block"
+    popupoverlay.style.display="block"
+}
+function closen(){
+        popupbox.style.display="none"
+        popupoverlay.style.display="none"   
+    }
+function deleteitem(event){
+	event.target.parentElement.remove()
+}
+</script>
+</body>
+</html>
